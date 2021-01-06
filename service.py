@@ -14,14 +14,14 @@ def is_exist(post_id, posts):
             return True
 
 
-def add_text(cfg, text):
+def get_text(cfg, text):
     """Добавление текста по имеющимся тегам"""
     for tag in cfg.TAGS:
         if tag.lower() in text.lower():
             return text
 
 
-def add_photos(attachments):
+def get_photos(attachments):
     """Добавление фоток"""
     photos = []
     for attac in attachments:
