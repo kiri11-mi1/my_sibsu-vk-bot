@@ -26,11 +26,12 @@ def get_photos(attachments):
     photos = []
     for attac in attachments:
         if attac['type'] == 'photo':
-            photos.append([{\
-                      "width": sub_photo['width'],\
-                      "height": sub_photo['height'],\
-                      "url": sub_photo["url"]}\
-                    for sub_photo in attac['photo']['sizes']\
-                ])
+            for sub_photo in attac['photo']['sizes']:
+                if sub_photo['type'] == 'y':
+                    photos.append({
+                        "width": sub_photo['width'],
+                        "height": sub_photo['height'],
+                        "url": sub_photo["url"]
+                    })
     return photos
     
