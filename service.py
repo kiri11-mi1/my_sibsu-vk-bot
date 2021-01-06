@@ -23,15 +23,10 @@ def get_text(cfg, text):
 
 def get_photos(attachments):
     """Добавление фоток"""
-    photos = []
-    for attac in attachments:
-        if attac['type'] == 'photo':
-            for sub_photo in attac['photo']['sizes']:
-                if sub_photo['type'] == 'y':
-                    photos.append({
-                        "width": sub_photo['width'],
-                        "height": sub_photo['height'],
-                        "url": sub_photo["url"]
-                    })
-    return photos
-    
+    for attac in list(filter(lambda elem: elem['type'] == 'photo', attachments)):
+        for sub_photo in list(filter(lambda elem: elem['type'] == 'y', attac['photo']['sizes'])):
+            yield {
+                "width": sub_photo['width'],
+                "height": sub_photo['height'],
+                "url": sub_photo["url"]
+            }
