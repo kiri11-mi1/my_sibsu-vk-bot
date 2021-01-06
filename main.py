@@ -30,7 +30,7 @@ def main():
             else:
                 logging.info(f"Пост {post['id']} не подходит")
                 continue
-            
+
             # Добавлям фотки
             post_data.update({"photos": service.get_photos(post['attachments'])})
             logging.info(f"Фотографии поста {post['id']} добавлены")
